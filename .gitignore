@@ -1,0 +1,62 @@
+# Python / aiogram / общий мусор
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Виртуальные окружения (venv, .venv и т.д.)
+venv/
+.env/
+.venv/
+env/
+ENV/
+
+# Секреты и конфиги с токенами
+.env
+.env.local
+.env.development
+.env.production
+secrets.json
+*.key
+*.pem
+config.ini
+
+# Твой прогресс-файл (чтобы не хранить пользовательские данные в git)
+lesson_progress.json
+
+# Fly.io специфичное (иногда игнорируют, но для простоты можно оставить)
+# fly.toml   ← раскомментируй, если не хочешь коммитить конфиг Fly (но для деплоя из GitHub лучше коммитить)
+
+# IDE / редакторы
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+
+# ОС-мусор
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Логи и временные файлы
+*.log
+*.logs
+*.tmp
