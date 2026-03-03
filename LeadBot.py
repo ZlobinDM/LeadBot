@@ -1,7 +1,8 @@
 import asyncio
-import logging
 import json
+import logging
 import os
+import threading
 from urllib.parse import quote
 from aiogram import Bot, Dispatcher, Router, F
 from aiogram.filters import CommandStart
@@ -211,8 +212,32 @@ async def reset_progress(call: CallbackQuery):
     )
 
 
+def run_health_server():
+    """Минимальный HTTP-сервер на порту PORT для health check Fly.io."""
+    import http.server
+    import socketserver
+
+    port = int(os.environ.get("PORT", "8080"))
+
+    class Handler(http.server.BaseHTTPRequestHandler):
+        def do_GET(self):
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b"OK")
+
+        def log_message(self, format, *args):
+            pass  # отключаем логи каждого запроса
+
+    with socketserver.TCPServer(("", port), Handler) as httpd:
+        httpd.serve_forever()
+
+
 async def main():
     logging.basicConfig(level=logging.INFO)
+    port = int(os.environ.get("PORT", "8080"))
+    thread = threading.Thread(target=run_health_server, daemon=True)
+    thread.start()
+    logging.info("Health check server listening on port %s", port)
     await dp.start_polling(bot)
 
 
