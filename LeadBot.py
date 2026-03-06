@@ -92,7 +92,7 @@ def get_main_kb():
 # Кнопка консультации
 def get_consult_button():
     consult_url = f"https://t.me/{CONSULT_USERNAME}?text={quote(CONSULT_MESSAGE)}"
-    return InlineKeyboardButton(text="📝 Записаться на консультацию", url=consult_url)
+    return InlineKeyboardButton(text="📝 Бесплатная консультация", url=consult_url)
 
 
 # Проверка подписки
